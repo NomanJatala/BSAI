@@ -15,7 +15,7 @@ low = 0
 high = n - 1
 
 while low <= high:
-    mid = low + (high - low) // 2  # avoids overflow
+    mid = (low + high) // 2  # avoids overflow
 
     if arr[mid] == key:
         print(f"Element found at index {mid} (0-based).")
