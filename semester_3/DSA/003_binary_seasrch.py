@@ -1,55 +1,29 @@
-# Binary Search (requires sorted input)
-# Time Complexity: O(log n)
-# Returns index (0-based) if found, or reports not found.
-
-n = int(input("Enter number of elements (sorted order): "))
-
+print("Binary Search Progarmm ")
 arr = []
-print("Enter sorted elements:")
+n = int(input("Enter numbers of element:"))
 for i in range(n):
-    arr.append(int(input()))
+    arr.append(int(input("=>")))
 
-key = int(input("Enter value to search: "))
 
+item = int(input("Enter number to search:"))
 low = 0
-high = n - 1
+high = n-1
 
-while low <= high:
-    mid = (low + high) // 2  # avoids overflow
+def binary_search(arr,low,high,item):
+    if low <=high:
+        mid = (low + high) //2
 
-    if arr[mid] == key:
-        print(f"Element found at index {mid} (0-based).")
-        break
-    elif key < arr[mid]:
-        high = mid - 1  # search left half
+        if arr[mid] == item:
+            print(f"item is at {mid} index")
+        elif arr[mid] > item:
+            binary_search(arr,low,mid-1,item)
+        else:
+            binary_search(arr,mid+1,high,item)
+
     else:
-        low = mid + 1   # search right half
-else:
-    print("Element not found.")# Binary Search (requires sorted input)
-# Time Complexity: O(log n)
-# Returns index (0-based) if found, or reports not found.
+        print("Element not found")
 
-n = int(input("Enter number of elements (sorted order): "))
+    
 
-arr = []
-print("Enter sorted elements:")
-for i in range(n):
-    arr.append(int(input()))
 
-key = int(input("Enter value to search: "))
-
-low = 0
-high = n - 1
-
-while low <= high:
-    mid = low + (high - low) // 2  # avoids overflow
-
-    if arr[mid] == key:
-        print(f"Element found at index {mid} (0-based).")
-        break
-    elif key < arr[mid]:
-        high = mid - 1  # search left half
-    else:
-        low = mid + 1   # search right half
-else:
-    print("Element not found.")
+binary_search(arr,low,high,item)
