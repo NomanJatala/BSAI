@@ -19,7 +19,6 @@ def insert_at_end(head, value):
         return new_node
 
     temp = head
-
     while temp.next is not None:
         temp = temp.next
 
