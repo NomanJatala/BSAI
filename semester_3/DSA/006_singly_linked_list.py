@@ -1,7 +1,8 @@
+
 # Singly Linked List
 # Demonstrates:
-# insert at end, insert at start, delete by value,
-# search, and display
+# insert at end, insert at start, insert at position,
+# delete by value, search, and display
 
 
 # Node class
@@ -19,6 +20,7 @@ def insert_at_end(head, value):
         return new_node
 
     temp = head
+
     while temp.next is not None:
         temp = temp.next
 
@@ -31,21 +33,48 @@ def insert_at_start(head, value):
     new_node = Node(value)
 
     new_node.next = head
-    head = new_node
+    return new_node
+
+
+# Insert value at a specific position (1-based)
+def insert_at_position(head, value, position):
+    if position < 1:
+        print("Invalid position")
+        return head
+
+    new_node = Node(value)
+
+    if position == 1:
+        new_node.next = head
+        return new_node
+
+    temp = head
+
+    for i in range(position - 2):
+        if temp is None:
+            print("Invalid position")
+            return head
+
+        temp = temp.next
+
+    if temp is None:
+        print("Invalid position")
+        return head
+
+    new_node.next = temp.next
+    temp.next = new_node
 
     return head
 
 
 # Delete first occurrence of value
 def delete_node(head, value):
-
     if head is None:
         return head
 
     # If first node contains the value
     if head.data == value:
-        head = head.next
-        return head
+        return head.next
 
     prev = head
     cur = head.next
@@ -59,7 +88,6 @@ def delete_node(head, value):
         return head
 
     prev.next = cur.next
-
     return head
 
 
@@ -99,18 +127,34 @@ for i in range(n):
 print("List after insertion at end:", end=" ")
 display(head)
 
+
+# Insert at start
 print("Insert at start value 5")
 head = insert_at_start(head, 5)
 
 print("List after inserting 5 at start:", end=" ")
 display(head)
 
+
+# Insert at position
+value = int(input("Enter value to insert: "))
+position = int(input("Enter position: "))
+
+head = insert_at_position(head, value, position)
+
+print("List after insertion at position:", end=" ")
+display(head)
+
+
+# Delete a node
 val = int(input("Enter value to delete: "))
 head = delete_node(head, val)
 
 print("List after deletion:", end=" ")
 display(head)
 
+
+# Search for a value
 val = int(input("Enter value to search: "))
 
 if search(head, val):
