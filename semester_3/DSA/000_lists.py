@@ -3,7 +3,7 @@ arr = [1,2,3,4,5]
 
 # Print Numbers
 for i in range(len(arr)):
-    print(i)
+    print(arr[i])
 
 # print Forward
 arr = [1,2,3,4,5,6]
